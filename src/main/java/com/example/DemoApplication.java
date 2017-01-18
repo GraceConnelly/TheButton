@@ -14,7 +14,7 @@ public class DemoApplication {
 				Status status = TheButtonController.currentStatus;
 				status.setCurrent(status.getCurrent() + 1);
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(500);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
