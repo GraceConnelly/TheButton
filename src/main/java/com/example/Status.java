@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Ben on 1/18/17.
@@ -28,8 +28,8 @@ public class Status {
     }
 
     @JsonProperty("scores")
-    public Set<Map.Entry<String, Integer>> getScoresList() {
-        return scores.entrySet();
+    public List<Score> getScoresList() {
+        return scores.entrySet().stream().map(e -> new Score(e.getKey(), e.getValue())).collect(Collectors.toList());
     }
 
     public void setScores(HashMap<String, Integer> scores) {
