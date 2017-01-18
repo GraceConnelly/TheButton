@@ -3,6 +3,7 @@ package com.example;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,7 +30,13 @@ public class Status {
 
     @JsonProperty("scores")
     public List<Score> getScoresList() {
-        return scores.entrySet().stream().map(e -> new Score(e.getKey(), e.getValue())).collect(Collectors.toList());
+        List<Score> scoreList = scores.entrySet().stream()
+                .map(e -> new Score(e.getKey(), e.getValue()))
+                .collect(Collectors.toList());
+
+        Collections.sort(scoreList);
+
+        return scoreList;
     }
 
     public void setScores(HashMap<String, Integer> scores) {

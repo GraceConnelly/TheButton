@@ -3,7 +3,7 @@ package com.example;
 /**
  * Created by Ben on 1/18/17.
  */
-public class Score {
+public class Score implements Comparable {
     private String name;
     private int score;
 
@@ -29,5 +29,10 @@ public class Score {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return ((Score)o).getScore() - score;
     }
 }
