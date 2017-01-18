@@ -9,8 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class TheButtonController {
+    public static Status currentStatus = new Status();
+
     @RequestMapping(path = "/status", method = RequestMethod.GET)
     public Status getStatus() {
-        return new Status();
+        return currentStatus;
+    }
+
+    @RequestMapping(path = "/click", method = RequestMethod.POST)
+    public void clickButton() {
+        currentStatus.setCurrent(0);
     }
 }

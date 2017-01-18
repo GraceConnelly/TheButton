@@ -1,5 +1,6 @@
 package com.example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,6 +11,7 @@ public class Status {
     private int current;
 
     public Status() {
+        scores = new ArrayList<>();
     }
 
     public Status(List<User> scores, int current) {
