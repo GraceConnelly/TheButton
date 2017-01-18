@@ -1,9 +1,8 @@
 package com.example;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 /**
  * Created by Ben on 1/18/17.
@@ -20,7 +19,12 @@ public class TheButtonController {
 
     @CrossOrigin
     @RequestMapping(path = "/click", method = RequestMethod.POST)
-    public void clickButton() {
-        currentStatus.setCurrent(0);
+    public void clickButton(@RequestBody Click click) {
+        HashMap<String, Integer> scores = currentStatus.getScores();
+
+        if (!scores.containsKey(click.getName())) {
+            scores.put(click.getName(), currentStatus.getCurrent());
+            currentStatus.setCurrent(0);
+        }
     }
 }
